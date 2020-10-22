@@ -1,9 +1,9 @@
 import React from 'react'
 import './App.css'
-import Hex from './components/Hex/Hex'
+import Step from './components/Step/Step'
 
 function App() {
-  return <Hex />
+  return <Step />
 }
 
 export default App
