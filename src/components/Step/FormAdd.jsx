@@ -3,7 +3,9 @@ import { nanoid } from 'nanoid'
 import StepModel from './model'
 
 function FormAdd(props) {
-  const { onAdd } = props
+  const { onAdd, item } = props
+
+  console.log()
 
   const [form, setForm] = useState({ date: '', distance: '' })
 
@@ -15,7 +17,10 @@ function FormAdd(props) {
   const handleSubmit = (e) => {
     e.preventDefault()
     const newStep = new StepModel(nanoid(), form.date, form.distance)
-    if (form.date === '' || form.distance === '') {
+    if (form.date === '' || !/^\d{2}([./-])\d{2}\1\d{4}$/.test(form.date)) {
+      return null
+    }
+    if (form.distance === '' || !Number(form.distance)) {
       return null
     }
     onAdd(newStep)
